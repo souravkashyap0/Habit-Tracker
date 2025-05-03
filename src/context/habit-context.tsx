@@ -5,6 +5,7 @@ export interface HabitContextType {
   habits: Habits[];
   addHabit: (habit: Habits) => void;
   deleteHabit: (id: string) => void;
+  deleteAllHabits: () => void;
 }
 
 export const HabitContext = createContext<HabitContextType | undefined>(
@@ -38,8 +39,14 @@ export const HabitProvider = ({ children }: { children: React.ReactNode }) => {
     setHabits((prev) => prev.filter((habit) => habit.id !== id));
   };
 
+  const deleteAllHabits = () => {
+    setHabits([]);
+  };
+
   return (
-    <HabitContext.Provider value={{ habits, addHabit, deleteHabit }}>
+    <HabitContext.Provider
+      value={{ habits, addHabit, deleteHabit, deleteAllHabits }}
+    >
       {children}
     </HabitContext.Provider>
   );

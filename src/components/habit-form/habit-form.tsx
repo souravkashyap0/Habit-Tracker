@@ -6,15 +6,14 @@ function HabitForm() {
   const { addHabit } = useHabit();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("THE SUBMIT BUTTON ", e);
     e.preventDefault();
     if (!title?.trim()) return;
     addHabit({ id: self.crypto.randomUUID(), name: title });
     setTitle("");
   };
-  console.log("THE HABIT FORM", title);
+
   return (
-    <>
+    <div>
       <div className="text-center text-2xl font-bold mb-4">Habit Tracker</div>
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input
@@ -28,7 +27,7 @@ function HabitForm() {
           Add
         </button>
       </form>
-    </>
+    </div>
   );
 }
 
